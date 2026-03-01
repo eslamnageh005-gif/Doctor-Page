@@ -2,7 +2,7 @@ import { Search, Globe, ChevronDown, Bell, Menu } from "lucide-react"; // ضيف
 import { useEffect, useRef } from "react";
 import doctorImg from "@/assets/doctor-profile.jpg";
 import { SidebarTrigger } from "@/components/ui/sidebar"; // لو بتستخدم shadcn
-
+import { Menu } from "lucide-react";
 // export function AppHeader() {
 //   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -74,24 +74,21 @@ import { SidebarTrigger } from "@/components/ui/sidebar"; // لو بتستخدم
 // ضيف { onMenuClick } كـ Parameter للوظيفة
 export function AppHeader({ onMenuClick }: { onMenuClick: () => void }) {
   const searchRef = useRef<HTMLInputElement>(null);
-  
-  // ... (كود الـ useEffect بتاعك زي ما هو)
 
   return (
+    // تأكد إن الـ header مفتوح مش معمول له comment
     <header className="h-16 bg-card border-b border-border flex items-center px-6 gap-4 shrink-0">
       
-      {/* --- الزرار الجديد للموبايل --- */}
+      {/* 1. زرار المنيو للموبايل - يظهر فقط في الشاشات الصغيرة */}
       <button 
         onClick={onMenuClick} 
         className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
       >
         <Menu className="w-6 h-6 text-muted-foreground" />
       </button>
-      {/* ---------------------------- */}
 
-      {/* باقي كود الـ Search بتاعك... */}
+      {/* 2. السيرش (إخفاء في الموبايل الصغير لزيادة المساحة) */}
       <div className="flex-1 max-w-md relative hidden sm:block"> 
-        {/* ضفنا hidden sm:block عشان السيرش يختفي في الموبايلات الصغيرة جداً ويوفر مساحة */}
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <input
           ref={searchRef}
@@ -101,7 +98,11 @@ export function AppHeader({ onMenuClick }: { onMenuClick: () => void }) {
         />
       </div>
 
-      {/* باقي كود المعلومات (Doctor info) زي ما هو... */}
+      {/* 3. باقي معلومات الدكتور (باقي كودك القديم هنا) */}
+      <div className="ml-auto flex items-center gap-4">
+          {/* كود التنبيهات وصورة الدكتور */}
+      </div>
+
     </header>
   );
 }
