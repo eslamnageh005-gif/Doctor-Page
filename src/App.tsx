@@ -33,3 +33,5 @@ const App = () => (
 );
 
 export default App;
+// ضيف الكلاسات دي للـ div الرئيسي بتاع الـ Sidebar
+<div className="hidden md:block w-64 h-screen ..."></div>
