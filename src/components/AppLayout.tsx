@@ -20,26 +20,25 @@
 //   );
 // }
 // export default function AppLayout({ children }: { children: React.ReactNode }) {
-  // بدل export default function ...
+ import { useState } from "react";
+import { AppSidebar } from "./AppSidebar";
+import { AppHeader } from "./AppHeader";
+
 export function AppLayout({ children }: { children: React.ReactNode }) {
-const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-background">
-     <div className={`
-  /* 1. الإعدادات الأساسية للموبايل */
-  fixed inset-y-0 left-0 z-50 w-64 bg-sidebar transition-transform duration-300 ease-in-out
-  
-  /* 2. السطر السحري اللي سألت عليه */
-  ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} 
-  
-  /* 3. الإعدادات للاب توب (عشان يظهر ثابت) */
-  md:relative md:translate-x-0 md:flex
-`}>
-  <AppSidebar />
-</div>
+    <div className="flex min-h-screen bg-background text-foreground">
+      {/* Sidebar Container */}
+      <div className={`
+        fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-300 ease-in-out bg-sidebar border-r
+        ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} 
+        md:relative md:translate-x-0
+      `}>
+        <AppSidebar />
+      </div>
 
-      {/* الخلفية الشفافة (Overlay) - تظهر فقط لما المنيو تتفتح في الموبايل */}
+      {/* Mobile Overlay */}
       {isSidebarOpen && (
         <div 
           className="fixed inset-0 bg-black/50 z-40 md:hidden" 
@@ -47,6 +46,7 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(false);
         />
       )}
 
+      {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0">
         <AppHeader onMenuClick={() => setIsSidebarOpen(true)} />
         <main className="flex-1 overflow-y-auto p-4 md:p-6">
@@ -55,5 +55,7 @@ const [isSidebarOpen, setIsSidebarOpen] = useState(false);
       </div>
     </div>
   );
-  export default AppLayout;
 }
+
+// السطر ده لازم يكون بره القوس الـ } بتاع الـ function
+export default AppLayout;
