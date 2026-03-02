@@ -73,7 +73,14 @@ export default function Dashboard() {
                 <td className="px-6 py-4 text-sm text-muted-foreground">{appt.time}</td>
                 <td className="px-6 py-4 text-sm text-muted-foreground">{appt.type}</td>
                 <td className="px-6 py-4">
-                  <StatusBadge status={appt.status} />
+                // امسح السطر اللي فيه StatusBadge وحط ده مكانه:
+                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${appointment.status === 'completed' ? 'bg-green-100 text-green-800' :
+                    appointment.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                      'bg-gray-100 text-gray-800'
+                    }`}>
+                    {appointment.status === 'completed' ? 'مكتمل' :
+                      appointment.status === 'pending' ? 'منتظر' : 'ملغي'}
+                  </span>
                 </td>
               </tr>
             ))}
