@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AppLayout } from "@/components/AppLayout";
+import  AppLayout  from "@/components/AppLayout";
 import { StatusBadge } from "@/components/StatusBadge";
 
 const upcoming = [
