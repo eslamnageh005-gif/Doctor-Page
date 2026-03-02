@@ -19,8 +19,10 @@
 //     </div>
 //   );
 // }
-export default function AppLayout({ children }: { children: React.ReactNode }) {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+// export default function AppLayout({ children }: { children: React.ReactNode }) {
+  // بدل export default function ...
+export function AppLayout({ children }: { children: React.ReactNode }) {
+const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <div className="flex min-h-screen bg-background">
@@ -53,4 +55,5 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       </div>
     </div>
   );
+  export default AppLayout;
 }
