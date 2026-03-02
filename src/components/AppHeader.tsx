@@ -110,24 +110,16 @@
 //   );
 // }
 ////////////////////////////////////////////////
-import { useRef } from "react";
-// تأكد إن السطر ده فيه كلمة Menu و Search و Bell
-import { Menu, Search, Bell } from "lucide-react"; 
+import { Menu } from "lucide-react";
 
+// السطر ده هو اللي بيشيل الـ Error من الهيدر
 export function AppHeader({ onMenuClick }: { onMenuClick: () => void }) {
-  const searchRef = useRef<HTMLInputElement>(null);
-
   return (
-    <header className="h-16 bg-card border-b border-border flex items-center px-6 gap-4 shrink-0">
-      {/* زرار المنيو للموبايل */}
-      <button 
-        onClick={onMenuClick} 
-        className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
-      >
-        <Menu className="w-6 h-6 text-muted-foreground" />
+    <header className="h-16 flex items-center px-4 border-b bg-white">
+      <button onClick={onMenuClick} className="md:hidden p-2">
+        <Menu className="w-6 h-6" />
       </button>
-
-      {/* باقي الكود بتاعك... */}
+      <h1 className="text-xl font-bold ml-4">نظرة عامة</h1>
     </header>
   );
 }

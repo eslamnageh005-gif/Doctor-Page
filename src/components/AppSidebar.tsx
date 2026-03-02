@@ -59,9 +59,9 @@ const navItems = [
 // }
 export function AppSidebar() {
   return (
-    // شيل hidden md:flex من هنا لأننا بنتحكم فيها من الـ Layout
-    <aside className="w-full h-full bg-sidebar flex flex-col border-r">
-      {/* محتوى السايد بار */}
+    <aside className="flex flex-col h-full w-full bg-white">
+      <div className="p-6 font-bold text-xl border-b">لوحة التحكم</div>
+      {/* باقي اللينكات بتاعتك هنا */}
     </aside>
   );
 }
