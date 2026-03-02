@@ -1,10 +1,10 @@
-import { Menu, Search, Bell } from "lucide-react";
-import { Search, Globe, ChevronDown, Bell, Menu } from "lucide-react"; // ضيف Menu هنا
-import { useEffect, useRef } from "react";
-import doctorImg from "@/assets/doctor-profile.jpg";
-import { SidebarTrigger } from "@/components/ui/sidebar"; // لو بتستخدم shadcn
-import { Menu } from "lucide-react";
-
+// import { Menu, Search, Bell } from "lucide-react";
+// import { Search, Globe, ChevronDown, Bell, Menu } from "lucide-react"; // ضيف Menu هنا
+// import { useEffect, useRef } from "react";
+// import doctorImg from "@/assets/doctor-profile.jpg";
+// import { SidebarTrigger } from "@/components/ui/sidebar"; // لو بتستخدم shadcn
+// import { Menu } from "lucide-react";
+//////////////////////////////////////////////////////////////
 // export function AppHeader() {
 //   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -74,14 +74,52 @@ import { Menu } from "lucide-react";
 // }
 
 // ضيف { onMenuClick } كـ Parameter للوظيفة
+///////////////////////////////////////////////////////////////////////
+// export function AppHeader({ onMenuClick }: { onMenuClick: () => void }) {
+//   const searchRef = useRef<HTMLInputElement>(null);
+
+//   return (
+//     // تأكد إن الـ header مفتوح مش معمول له comment
+//     <header className="h-16 bg-card border-b border-border flex items-center px-6 gap-4 shrink-0">
+      
+//       {/* 1. زرار المنيو للموبايل - يظهر فقط في الشاشات الصغيرة */}
+//       <button 
+//         onClick={onMenuClick} 
+//         className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
+//       >
+//         <Menu className="w-6 h-6 text-muted-foreground" />
+//       </button>
+
+//       {/* 2. السيرش (إخفاء في الموبايل الصغير لزيادة المساحة) */}
+//       <div className="flex-1 max-w-md relative hidden sm:block"> 
+//         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+//         <input
+//           ref={searchRef}
+//           type="text"
+//           placeholder="Search patients, records…"
+//           className="w-full pl-9 pr-16 py-2 text-sm bg-muted rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-ring transition-all"
+//         />
+//       </div>
+
+//       {/* 3. باقي معلومات الدكتور (باقي كودك القديم هنا) */}
+//       <div className="ml-auto flex items-center gap-4">
+//           {/* كود التنبيهات وصورة الدكتور */}
+//       </div>
+
+//     </header>
+//   );
+// }
+////////////////////////////////////////////////
+import { useRef } from "react";
+// تأكد إن السطر ده فيه كلمة Menu و Search و Bell
+import { Menu, Search, Bell } from "lucide-react"; 
+
 export function AppHeader({ onMenuClick }: { onMenuClick: () => void }) {
   const searchRef = useRef<HTMLInputElement>(null);
 
   return (
-    // تأكد إن الـ header مفتوح مش معمول له comment
     <header className="h-16 bg-card border-b border-border flex items-center px-6 gap-4 shrink-0">
-      
-      {/* 1. زرار المنيو للموبايل - يظهر فقط في الشاشات الصغيرة */}
+      {/* زرار المنيو للموبايل */}
       <button 
         onClick={onMenuClick} 
         className="md:hidden p-2 hover:bg-muted rounded-lg transition-colors"
@@ -89,22 +127,7 @@ export function AppHeader({ onMenuClick }: { onMenuClick: () => void }) {
         <Menu className="w-6 h-6 text-muted-foreground" />
       </button>
 
-      {/* 2. السيرش (إخفاء في الموبايل الصغير لزيادة المساحة) */}
-      <div className="flex-1 max-w-md relative hidden sm:block"> 
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-        <input
-          ref={searchRef}
-          type="text"
-          placeholder="Search patients, records…"
-          className="w-full pl-9 pr-16 py-2 text-sm bg-muted rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-ring transition-all"
-        />
-      </div>
-
-      {/* 3. باقي معلومات الدكتور (باقي كودك القديم هنا) */}
-      <div className="ml-auto flex items-center gap-4">
-          {/* كود التنبيهات وصورة الدكتور */}
-      </div>
-
+      {/* باقي الكود بتاعك... */}
     </header>
   );
 }

@@ -55,13 +55,13 @@ const navItems = [
 //           </div>
 //         </div>
 //       </div>
-//     </aside>
-//   );
+//     </aside>g
 // }
 export function AppSidebar() {
   return (
-    <aside className="flex flex-col w-full h-full">
-       {/* محتوى المنيو */}
+    // شيل hidden md:flex من هنا لأننا بنتحكم فيها من الـ Layout
+    <aside className="w-full h-full bg-sidebar flex flex-col border-r">
+      {/* محتوى السايد بار */}
     </aside>
   );
 }
