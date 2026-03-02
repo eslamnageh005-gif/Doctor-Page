@@ -24,14 +24,18 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-screen bg-background">
-      {/* السايد بار - تعديل طريقة الظهور في الموبايل */}
-      <div className={`
-        fixed inset-y-0 left-0 z-50 w-64 transform transition-transform duration-300 ease-in-out bg-sidebar
-        ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} 
-        md:relative md:translate-x-0 md:block
-      `}>
-        <AppSidebar />
-      </div>
+     <div className={`
+  /* 1. الإعدادات الأساسية للموبايل */
+  fixed inset-y-0 left-0 z-50 w-64 bg-sidebar transition-transform duration-300 ease-in-out
+  
+  /* 2. السطر السحري اللي سألت عليه */
+  ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} 
+  
+  /* 3. الإعدادات للاب توب (عشان يظهر ثابت) */
+  md:relative md:translate-x-0 md:flex
+`}>
+  <AppSidebar />
+</div>
 
       {/* الخلفية الشفافة (Overlay) - تظهر فقط لما المنيو تتفتح في الموبايل */}
       {isSidebarOpen && (

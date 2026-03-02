@@ -1,8 +1,10 @@
+import { Menu, Search, Bell } from "lucide-react";
 import { Search, Globe, ChevronDown, Bell, Menu } from "lucide-react"; // ضيف Menu هنا
 import { useEffect, useRef } from "react";
 import doctorImg from "@/assets/doctor-profile.jpg";
 import { SidebarTrigger } from "@/components/ui/sidebar"; // لو بتستخدم shadcn
 import { Menu } from "lucide-react";
+
 // export function AppHeader() {
 //   const searchRef = useRef<HTMLInputElement>(null);
 
