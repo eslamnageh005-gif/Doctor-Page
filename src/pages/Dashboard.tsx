@@ -1,5 +1,4 @@
-import { AppLayout } from "@/components/AppLayout";
-import { StatusBadge } from "@/components/StatusBadge";
+import AppLayout from "@/components/AppLayout"; // صح (شيلنا الأقواس)import { StatusBadge } from "@/components/StatusBadge";
 import { Calendar, Users, Clock, CheckCircle2 } from "lucide-react";
 
 const appointments = [
