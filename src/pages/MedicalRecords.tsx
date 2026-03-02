@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { AppLayout } from "@/components/AppLayout";
+import  AppLayout  from "@/components/AppLayout";
 import { Plus, FileText } from "lucide-react";
 
 const records = [

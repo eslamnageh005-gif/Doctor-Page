@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AppLayout } from "@/components/AppLayout";
+import  AppLayout  from "@/components/AppLayout";
 import { Search, Upload, ArrowLeft } from "lucide-react";
 
 interface FormField {

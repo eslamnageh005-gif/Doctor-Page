@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AppLayout } from "@/components/AppLayout";
+import AppLayout from "@/components/AppLayout";
 import { Edit, Mail, Phone, Building2, Award, FileText } from "lucide-react";
 import doctorImg from "@/assets/doctor-profile.jpg";
 
