@@ -1,5 +1,5 @@
 // import { Toaster } from "@/components/ui/toaster";
-import AppLayout from "@/components/AppLayout"; // بدون أقواس {}
+import AppLayout from "@/components/AppLayout"; 
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -16,16 +16,18 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
+      {/* استبدلنا Toaster بـ Sonner اللي إنت معرفها فوق */}
+      <Sonner /> 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/appointments" element={<Appointments />} />
-          <Route path="/medical-records" element={<MedicalRecords />} />
-          <Route path="/medical-records/new" element={<NewMedicalRecord />} />
-          <Route path="/profile" element={<DoctorProfile />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          {/* لف كل الصفحات بـ AppLayout عشان المنيو تظهر في كل حتة */}
+          <Route element={<AppLayout children={<></>} />}> 
+             <Route path="/" element={<Dashboard />} />
+             <Route path="/appointments" element={<Appointments />} />
+             <Route path="/medical-records" element={<MedicalRecords />} />
+             <Route path="/medical-records/new" element={<NewMedicalRecord />} />
+             <Route path="/profile" element={<DoctorProfile />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
@@ -34,5 +36,3 @@ const App = () => (
 );
 
 export default App;
-// ضيف الكلاسات دي للـ div الرئيسي بتاع الـ Sidebar
-<div className="hidden md:block w-64 h-screen ..."></div>
