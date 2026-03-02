@@ -1,92 +1,88 @@
-import AppLayout from "@/components/AppLayout"; // بدون أقواس {}
-import { Calendar, Users, Clock, CheckCircle2 } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { 
+  Users, 
+  Clock, 
+  CheckCircle2, 
+  Calendar as CalendarIcon,
+  ChevronRight
+} from "lucide-react";
 
-const appointments = [
-  { patient: "John Doe", time: "09:00 AM", type: "Checkup", status: "Waiting" as const },
-  { patient: "Jane Smith", time: "10:30 AM", type: "Follow-up", status: "Completed" as const },
-  { patient: "Michael Brown", time: "12:00 PM", type: "Consultation", status: "Cancelled" as const },
-  { patient: "Sarah Connor", time: "02:00 PM", type: "Checkup", status: "Waiting" as const },
-  { patient: "Robert Mills", time: "03:30 PM", type: "Follow-up", status: "Scheduled" as const },
-];
+const Dashboard = () => {
+  const stats = [
+    { label: "إجمالي اليوم", value: "24", icon: Users, color: "text-blue-600", bg: "bg-blue-50" },
+    { label: "في الانتظار", value: "8", icon: Clock, color: "text-yellow-600", bg: "bg-yellow-50" },
+    { label: "مكتمل", value: "16", icon: CheckCircle2, color: "text-green-600", bg: "bg-green-50" },
+  ];
 
-const stats = [
-  { label: "Total Today", value: "12", icon: Calendar, color: "bg-primary/10 text-primary" },
-  { label: "Waiting", value: "4", icon: Clock, color: "bg-[hsl(var(--status-waiting-bg))] text-[hsl(var(--status-waiting))]" },
-  { label: "Completed", value: "7", icon: CheckCircle2, color: "bg-[hsl(var(--status-completed-bg))] text-[hsl(var(--status-completed))]" },
-  { label: "Total Patients", value: "248", icon: Users, color: "bg-accent/10 text-accent" },
-];
-
-export default function Dashboard() {
-  const today = new Date().toLocaleDateString("en-US", { weekday: "long", year: "numeric", month: "long", day: "numeric" });
+  const appointments = [
+    { id: 1, patient: "محمد أحمد", time: "10:30 ص", type: "كشف جديد", status: "completed" },
+    { id: 2, patient: "سارة محمود", time: "11:00 ص", type: "استشارة", status: "pending" },
+    { id: 3, patient: "علي حسن", time: "11:30 ص", type: "كشف جديد", status: "pending" },
+  ];
 
   return (
-    <AppLayout>
-      {/* Page Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-foreground">Today's Overview</h1>
-        <p className="text-sm text-muted-foreground mt-1">{today}</p>
+    <div className="space-y-6 animate-in fade-in duration-500">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-slate-900">نظرة عامة اليوم</h1>
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <CalendarIcon className="w-4 h-4" />
+          <span>{new Date().toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
+        </div>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        {stats.map((stat) => (
-          <div key={stat.label} className="bg-card rounded-xl border border-border p-5 flex items-center gap-4">
-            <div className={`w-11 h-11 rounded-lg flex items-center justify-center shrink-0 ${stat.color}`}>
-              <stat.icon className="w-5 h-5" />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {stats.map((stat, index) => (
+          <Card key={index} className="p-6 flex items-center gap-4 hover:shadow-md transition-shadow">
+            <div className={`p-3 rounded-xl ${stat.bg}`}>
+              <stat.icon className={`w-6 h-6 ${stat.color}`} />
             </div>
             <div>
-              <p className="text-2xl font-bold text-foreground">{stat.value}</p>
-              <p className="text-xs text-muted-foreground mt-0.5">{stat.label}</p>
+              <p className="text-sm text-muted-foreground">{stat.label}</p>
+              <p className="text-2xl font-bold">{stat.value}</p>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
 
-      {/* Appointments Table */}
-      <div className="bg-card rounded-xl border border-border overflow-hidden">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-          <h2 className="text-base font-semibold text-foreground">Today's Appointments</h2>
-          <span className="text-xs text-muted-foreground bg-muted px-2.5 py-1 rounded-full font-medium">
-            {appointments.length} appointments
-          </span>
+      <Card className="overflow-hidden">
+        <div className="p-6 border-b border-border flex items-center justify-between">
+          <h2 className="font-semibold text-lg">المواعيد القادمة</h2>
+          <button className="text-primary text-sm font-medium hover:underline flex items-center gap-1">
+            عرض الكل <ChevronRight className="w-4 h-4" />
+          </button>
         </div>
-        <table className="w-full">
-          <thead>
-            <tr className="bg-muted/40">
-              <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-6 py-3">Patient</th>
-              <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-6 py-3">Time</th>
-              <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-6 py-3">Type</th>
-              <th className="text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider px-6 py-3">Status</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border">
-            {appointments.map((appt, i) => (
-              <tr key={i} className="hover:bg-muted/30 transition-colors">
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-xs font-bold text-primary">
-                      {appt.patient.split(" ").map(n => n[0]).join("")}
-                    </div>
-                    <span className="text-sm font-medium text-foreground">{appt.patient}</span>
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-sm text-muted-foreground">{appt.time}</td>
-                <td className="px-6 py-4 text-sm text-muted-foreground">{appt.type}</td>
-                <td className="px-6 py-4">
-                // امسح السطر اللي فيه StatusBadge وحط ده مكانه:
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${appointment.status === 'completed' ? 'bg-green-100 text-green-800' :
-                    appointment.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-gray-100 text-gray-800'
-                    }`}>
-                    {appointment.status === 'completed' ? 'مكتمل' :
-                      appointment.status === 'pending' ? 'منتظر' : 'ملغي'}
-                  </span>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="w-full text-right border-collapse">
+            <thead>
+              <tr className="bg-slate-50 text-muted-foreground text-sm">
+                <th className="p-4 font-medium">المريض</th>
+                <th className="p-4 font-medium">الوقت</th>
+                <th className="p-4 font-medium">النوع</th>
+                <th className="p-4 font-medium text-center">الحالة</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </AppLayout>
+            </thead>
+            <tbody className="divide-y divide-border">
+              {appointments.map((app) => (
+                <tr key={app.id} className="hover:bg-slate-50/50 transition-colors">
+                  <td className="p-4 font-medium">{app.patient}</td>
+                  <td className="p-4 text-muted-foreground">{app.time}</td>
+                  <td className="p-4 text-muted-foreground">{app.type}</td>
+                  <td className="p-4 text-center">
+                    {/* استبدلنا الـ StatusBadge بـ span عادي عشان نلغي الـ Error */}
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      app.status === 'completed' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700'
+                    }`}>
+                      {app.status === 'completed' ? 'مكتمل' : 'منتظر'}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </div>
   );
-}
+};
+
+export default Dashboard;
